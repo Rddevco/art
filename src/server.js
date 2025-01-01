@@ -40,6 +40,12 @@ import { categories } from "./backend/db/categories.js";
 import { products } from "./backend/db/products.js";
 import { users } from "./backend/db/users.js";
 import { v4 as uuid } from "uuid";
+import { getProductFeaturesHandler } from "./backend/controllers/AlishanTestController.js";
+import { getProductdetailController } from "./backend/controllers/RahulTestController.js";
+import { getProductitemHandler } from "./backend/controllers/RohitTestController.js";
+import {getProductEventController} from "./backend/controllers/ApshanTestController.js";
+
+import {getProductItem } from "./backend/controllers/SakibTestController.js";
 
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
@@ -127,6 +133,29 @@ export function makeServer({ environment = "development" } = {}) {
       // order routes (private)
       this.get("/user/orders", getOrderItemsHandler.bind(this));
       this.post("/user/orders", addItemToOrdersHandler.bind(this));
-    },
+
+      // Alishan API Test route (public)
+      this.get("/alishan-test/product-features", getProductFeaturesHandler.bind(this));
+
+  // Rahul aPI Test route (public)
+  this.get("/rahul-test/product-details", getProductdetailController.bind(this));
+
+
+  //apshan api test route (public)
+  this.get("/apshan-test/product-details", getProductEventController.bind(this));
+
+//Rohit PAI test Route (public)
+  this.get("/rohit-test/product-details",  getProductitemHandler.bind(this));
+
+
+
+
+//sakib api test route (public)
+this.get("/sakib-test/product-summary", getProductItem.bind(this));
+
+
+
+
+ },
   });
 }
